@@ -10,49 +10,49 @@
     <main>
       <section>
         <div class="container">
-          <div class="item content" style="">
-            <form class="form-container">
+          <div class="item content">
+            <form class="form-container" id="myForm">
               <div class="form-item">
                 <label>Full Name:</label>
-                <input type="text" placeholder="full name" />
+                <input type="text" id="fullName" placeholder="full name" />
               </div>
               <div class="form-item">
                 <label>Email:</label>
-                <input type="text" placeholder="email" />
+                <input type="text" id="email" placeholder="email" />
               </div>
               <div class="form-item">
                 <label>Password:</label>
-                <input type="password" placeholder="password" />
+                <input type="password" id="password" placeholder="password" />
               </div>
               <div class="form-item">
                 <label>Confirm Password:</label>
-                <input type="password" placeholder="confirm password" />
+                <input type="password" id="confirmPassword" placeholder="confirm password" />
               </div>
               <div class="form-item">
                 <label>Date of Birth:</label>
-                <input type="date" />
+                <input type="date" id="dob" />
               </div>
               <div class="form-item">
                 <label>Country:</label>
-                <select>
-                    <option value="">Select Country</option>
-                    <option value="BD">Bangladesh</option>
-                    <option value="IT">Italy</option>
-                    <option value="IT">Germany</option>
-                  </select>
+                <select id="country">
+                  <option value="">Select Country</option>
+                  <option value="BD">Bangladesh</option>
+                  <option value="IT">Italy</option>
+                  <option value="DE">Germany</option>
+                </select>
               </div>
               <div class="form-item form-color">
                 <label>Color Preference:</label>
-                <input type="color" />
+                <input type="color" id="color" />
               </div>
               <div class="form-item">
                 <label>Gender:</label>
                 <div class="gender-box">
-                    <input type="radio" id="male" name="gender" value="male" />
-                <label for="male">Male</label>
-              
-                <input type="radio" id="female" name="gender" value="female" />
-                <label for="female">Female</label>
+                  <input type="radio" id="male" name="gender" value="male" />
+                  <label for="male">Male</label>
+
+                  <input type="radio" id="female" name="gender" value="female" />
+                  <label for="female">Female</label>
                 </div>
               </div>
               <button type="submit">Submit</button>
@@ -63,5 +63,43 @@
         </div>
       </section>
     </main>
+
+    <script>
+      const form = document.getElementById('myForm');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // stop form from submitting
+
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+        const dob = document.getElementById('dob').value.trim();
+        const country = document.getElementById('country').value;
+        const color = document.getElementById('color').value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+
+        // Basic email pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!fullName || !email || !password || !confirmPassword || !dob || !country || !color || !gender) {
+          alert('All fields are required!');
+          return;
+        }
+
+        if (!emailPattern.test(email)) {
+          alert('Please enter a valid email address!');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        alert('Form submitted successfully!');
+        form.submit(); // You can submit the form if everything is okay
+      });
+    </script>
   </body>
 </html>
