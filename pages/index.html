@@ -12,6 +12,11 @@
         <div class="container">
           <div class="item content">
             <form class="form-container" id="myForm">
+              <!-- Logo at top center -->
+              <div style="text-align: center; margin-bottom: 20px;">
+                <img src="../assets/logo.png" alt="Logo" style="max-width: 120px;" />
+              </div>
+
               <div class="form-item">
                 <label>Full Name:</label>
                 <input type="text" id="fullName" placeholder="full name" />
@@ -55,6 +60,16 @@
                   <label for="female">Female</label>
                 </div>
               </div>
+
+              <!-- Terms and Conditions -->
+              <div class="form-item">
+                <input type="checkbox" id="terms" style="padding-left: 0;" />
+                <!-- <label for="terms">
+                  I agree to the Terms and Conditions
+                </label> -->
+                <p>I agree to the Terms and Conditions</p>
+              </div>
+
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -78,8 +93,8 @@
         const country = document.getElementById('country').value;
         const color = document.getElementById('color').value;
         const gender = document.querySelector('input[name="gender"]:checked');
+        const terms = document.getElementById('terms');
 
-        // Basic email pattern
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!fullName || !email || !password || !confirmPassword || !dob || !country || !color || !gender) {
@@ -97,8 +112,13 @@
           return;
         }
 
+        if (!terms.checked) {
+          alert('You must agree to the Terms and Conditions!');
+          return;
+        }
+
         alert('Form submitted successfully!');
-        form.submit(); // You can submit the form if everything is okay
+        // form.submit(); // Optional: only if you want to proceed with actual submission
       });
     </script>
   </body>
